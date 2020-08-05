@@ -8,10 +8,21 @@ List modelsList=['Sedan','Coupe','Hatchback',
   'Bike'
 ];
 
+List modelIcons=[
+  'sedan',
+  'coupe',
+  'hatchback',
+  'suv',
+  'suv',
+  'suv'
+];
+
 Map<String, List<String>> slots = {
   'NOV 17': ['11 AM', '1 PM', '3 PM', '4 PM', '11 AM'],
   "NOV 23": ["10 AM", "11 AM"],
-  "NOV 25": ["1 PM", "3 PM", "4 PM"]
+  "NOV 25": ["1 PM", "3 PM", "4 PM"],
+  "NOV 27": ["1 PM", "3 PM", "4 PM"],
+  "NOV 29": ["1 PM", "3 PM", "4 PM"]
 };
 
 List services = ['Ceramic Coating', 'Express Washing', 'Wash'
@@ -46,5 +57,4 @@ List settingIcons = [
   Icons.chat,
   Icons.info,
   Icons.settings_backup_restore
-
 ];

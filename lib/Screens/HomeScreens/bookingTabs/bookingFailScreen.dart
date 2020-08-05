@@ -24,12 +24,12 @@ class _BookingFailScreenState extends State<BookingFailScreen> {
             children: <Widget>[
               Icon(
                 Icons.error_outline,
-                size: 50,
+                size: 150,
                 color: Theme.of(context).primaryColorDark,
               ),
               SizedBox(height: 20),
               Text("Payment Failed",
-                style: headingStyle(context),
+                style: fieldTextStyle(context),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
@@ -45,13 +45,13 @@ class _BookingFailScreenState extends State<BookingFailScreen> {
                   });
                   Future.delayed(Duration(milliseconds: 100), () {
                     Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context)=>PaymentScreen()
+                        builder: (context)=>PaymentWrapper()
                     ));
                   });
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: button1Tapped?Theme.of(context).primaryColor:
+                    color: button1Tapped?Theme.of(context).primaryColorDark:
                     Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Theme.of(context).primaryColorDark),
@@ -62,8 +62,8 @@ class _BookingFailScreenState extends State<BookingFailScreen> {
                       color: button1Tapped?
                       Theme.of(context).primaryColorLight
                           :Theme.of(context).primaryColorDark
-                      ,fontSize: 20,
-                        fontWeight: FontWeight.w500
+                      ,fontSize: 21,
+                        fontWeight: FontWeight.w600
                     ),
 
                   ),),
@@ -85,7 +85,7 @@ class _BookingFailScreenState extends State<BookingFailScreen> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: button2Tapped?Theme.of(context).primaryColor:
+                    color: button2Tapped?Theme.of(context).primaryColorDark:
                     Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Theme.of(context).primaryColorDark),
@@ -96,8 +96,8 @@ class _BookingFailScreenState extends State<BookingFailScreen> {
                       color: button2Tapped?
                       Theme.of(context).primaryColorLight
                           :Theme.of(context).primaryColorDark
-                      ,fontSize: 20,
-                        fontWeight: FontWeight.w500
+                      ,fontSize: 21,
+                        fontWeight: FontWeight.w600
                     ),
 
                   ),),

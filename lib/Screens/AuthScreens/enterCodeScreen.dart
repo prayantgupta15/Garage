@@ -18,7 +18,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
   bool showOTPerror = false;
   String error="";
   void onTap() {
-    if (controller.text.length != 5) {
+    if (controller.text.length != 4) {
       print("OTP not entered");
       setState(() {
         showOTPerror = true;
@@ -27,8 +27,9 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
     }
     else {
       print("OTP Correct");
-      Navigator.pushReplacement(context,
-          CupertinoPageRoute(builder: (context) => HomeScreen()));
+      Navigator.of(context).pushAndRemoveUntil(
+          CupertinoPageRoute(builder: (context) => HomeScreen()),
+              (Route<dynamic> route) => false);
     }
   }
 
@@ -45,9 +46,9 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: getScreenHeight(context) * 0.1),
-                  Text('Have you received a Verification Code', style: headingStyle(context)),
+                  Text('Have you received a Verification Code?', style: headingStyle(context)),
                   SizedBox(height: 20),
-                  Text('Enter 4 digits Code sent to +91-' + widget.PhoneNumber, style: labelStyle(context)),
+                  Text('Enter 4 digits Code', style: labelStyle(context)),
                   SizedBox(height: 50),
                   PinCodeTextField(
                     controller: controller,
@@ -56,12 +57,12 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                     defaultBorderColor: Theme.of(context).primaryColor,
                     pinBoxRadius: 12,
                     hasTextBorderColor: Colors.grey,
-                    maxLength: 5,
-                    pinBoxHeight: getScreenWidth(context) / 7,
-                    pinBoxWidth: getScreenWidth(context) / 7,
+                    maxLength: 4,
+                    pinBoxHeight: getScreenWidth(context) / 6,
+                    pinBoxWidth: getScreenWidth(context) / 6,
                     pinTextStyle: fieldTextStyle(context),
                     onDone: (otp) {
-                      if (otp != null && otp.length == 5)
+                      if (otp != null && otp.length == 4)
                         setState(() {
                           showOTPerror = false;
                         });

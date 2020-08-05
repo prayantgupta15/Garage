@@ -23,7 +23,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Garage"),),
+      backgroundColor: Color(0xff272727),
+      body: Center(child: Image.asset('assets/steering.png',scale: 0.8,),
+
+
+      ),
     );
   }
 }

@@ -6,37 +6,63 @@ getScreenWidth(BuildContext ctx) => MediaQuery.of(ctx).size.width;
 getScreenHeight(BuildContext ctx) => MediaQuery.of(ctx).size.height;
 //-----------TEXT STYLE--------------------
 headingStyle(BuildContext context) => TextStyle(
-  fontSize: 28.0,
+//  color: Theme.of(context).primaryColorLi,
+  fontSize: 30.0,
   fontWeight: FontWeight.bold,
+);
+subheadingStyle(BuildContext context) => TextStyle(
+  fontSize: 21.0,
+  fontWeight: FontWeight.w500,
 );
 
 labelStyle(context) => TextStyle(
-  color: Colors.grey,
-  fontSize: 18,
-  fontWeight: FontWeight.w500,
+  color: Theme.of(context).primaryColorDark,
+  fontSize: 17,
+//  color: Colors.grey,
+  //Font Weight: Normal
+);
+fieldTextStyle(context)=>TextStyle(
+  fontWeight: FontWeight.w600,
+  fontSize: 21.0,
+  fontFamily: 'Avenir',
+
 );
 
-fieldTextStyle(context)=>TextStyle(
-  color: Theme.of(context).primaryColor,
-  fontWeight: FontWeight.w500,
-  fontSize: 20.0,
+
+summaryHeads(context)=>TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 21.0,
 );
 
 buttonTextStyle(context)=>TextStyle(
   color: Theme.of(context).primaryColorLight,
-  fontSize: 18.0,
-  fontWeight: FontWeight.bold,
+  fontSize: 21.0,
+  fontWeight: FontWeight.w600,
 );
 
-whiteTextStyle(context) => TextStyle(
-fontSize: 20,
-fontFamily: UtilsImporter().stringUtils.FontName,
-color: Theme.of(context).primaryColorLight);
+themeTextStyle(context)=>TextStyle(
+  color: Theme.of(context).primaryColor,
+  fontSize: 21.0,
+);
+
+serviceSchTextStyle(context) => TextStyle(
+    fontSize: 25,
+color: Colors.white
+);
+carNameTextStyle(context) => TextStyle(
+  fontFamily: 'Avenir',
+fontSize: 25,
+fontWeight: FontWeight.bold,
+  color: Colors.white
+
+);
 
 bookDetailsStyle(context)=>TextStyle(
-    fontSize: 18,
-    fontFamily: UtilsImporter().stringUtils.FontName,
-    color: Theme.of(context).primaryColorLight);
+    fontSize: 21,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Avenir',
+    color: Colors.white
+);
 
 //-------------BUTTON-------------------
 raisedButtons({

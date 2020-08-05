@@ -11,6 +11,7 @@ import 'package:garage/Screens/HomeScreens/bookingTabs/vehicleDetailsScreen.dart
 import 'package:garage/Utils/commonUtils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:garage/Utils/utils_importer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 //NAVIGATION BAR ITEM 0
 
@@ -23,7 +24,7 @@ class YourAppointmentsScreen extends StatefulWidget {
 class _YourAppointmentsScreenState extends State<YourAppointmentsScreen>{
   void onTap(){
     Navigator.push(context, CupertinoPageRoute(
-        builder: (context)=>SelectModelScreen()
+        builder: (context)=>SelectModelWrapper()
     ));
   }
 
@@ -49,7 +50,7 @@ class _YourAppointmentsScreenState extends State<YourAppointmentsScreen>{
                   Container(
                     height: 200,
                     child: Center(
-                      child: Image.asset('assets/noApp.png',
+                      child: SvgPicture.asset('assets/noApp.svg',
                           color: Theme.of(context).primaryColorDark),
                     ),
                   ),
@@ -84,51 +85,51 @@ class _YourAppointmentsScreenState extends State<YourAppointmentsScreen>{
           itemCount: 5,
           itemBuilder: (BuildContext context, int itemIndex) => Card(
             color: Theme.of(context).primaryColor,
-            elevation: 8,
+            elevation: 0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20)),
             child: Container(
-              padding: EdgeInsets.all(25),
+              padding: EdgeInsets.symmetric(horizontal:25),
               child: ListView(
 //                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(height: 10),
                   Text("Service Scheduled for",
-                      style: whiteTextStyle(context)
+                      style: serviceSchTextStyle(context)
                       ),
-                    SizedBox(height: 10),
-                  Text("BMW X5",style: whiteTextStyle(context)),
-                  SizedBox(
-                    height: 50,
+                  Text("BMW X5",style: carNameTextStyle(context)),
+                  //IMAGE
+                  Image.asset('assets/car-04.png',
+                    color: Colors.white,
                   ),
-
                   //DATE
                   ListTile(
                     title: Text("17th March 2020",style: bookDetailsStyle(context),),
-                    leading: Icon(Icons.bookmark_border,color: Theme.of(context).primaryColorLight,),
+                    leading: Icon(Icons.bookmark_border,color: Colors.white,),
                   ),
 
                   //TIME
                   ListTile(
                     title: Text("11 AM",style: bookDetailsStyle(context),),
-                    leading: Icon(Icons.access_time,color: Theme.of(context).primaryColorLight,),
+                    leading: Icon(Icons.access_time,color: Colors.white,),
                   ),
 
                   //PHONE
                   ListTile(
                     title: Text("+91 9872595",style: bookDetailsStyle(context),),
-                    leading: Icon(Icons.phone,color: Theme.of(context).primaryColorLight,),
+                    leading: Icon(Icons.phone,color: Colors.white),
                   ),
 
                   //ADD
                   ListTile(
                     title: Text("Main Street, 19th Layout, Indira Nagar",style: bookDetailsStyle(context),),
-                    leading: Icon(Icons.location_on,color: Theme.of(context).primaryColorLight,),
+                    leading: Icon(Icons.location_on,color: Colors.white,),
                   ),
 
                   //PHONE
                   ListTile(
                     title: Text("Express Wash, AC Service",style: bookDetailsStyle(context),),
-                    leading: Icon(Icons.speaker_notes,color: Theme.of(context).primaryColorLight,),
+                    leading: Icon(Icons.speaker_notes,color: Colors.white,),
                   ),
 
                 ],

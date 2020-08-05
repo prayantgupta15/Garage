@@ -5,25 +5,35 @@ enum MyThemeKeys { LIGHT, DARK }
 
 class MyThemes {
   static final ThemeData lightTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.white,
     fontFamily: UtilsImporter().stringUtils.FontName,
-    primaryColor: Color(0xff343434),
-    accentColor: Color(0xff343434),
+    primaryColor: Color(0xff272727),
+    accentColor: Color(0xff272727),
     primaryColorLight: Colors.white,
     primaryColorDark: Colors.black,
     brightness: Brightness.light,
 
   );
 
+//  static final ThemeData darkTheme = ThemeData(
+//    fontFamily: UtilsImporter().stringUtils.FontName,
+//    primaryColor: Colors.white,
+//    accentColor: Colors.white,
+//    primaryColorLight: Colors.black,
+////    Color(0xff272727),
+//    primaryColorDark: Colors.white,
+//    brightness: Brightness.dark,
+//  );
   static final ThemeData darkTheme = ThemeData(
-    fontFamily: UtilsImporter().stringUtils.FontName,
-    primaryColor: Colors.white,
-    accentColor: Color(0xff343434),
-    primaryColorLight: Colors.black,
-    primaryColorDark: Colors.white,
-    brightness: Brightness.dark,
+  scaffoldBackgroundColor: Colors.black,
+  fontFamily: UtilsImporter().stringUtils.FontName,
+  primaryColor: Color(0xff272727),
+  accentColor: Color(0xff272727),
+  primaryColorLight: Colors.black,
+  primaryColorDark: Colors.white,
+  brightness: Brightness.dark,
+//
   );
-
-
 
   static ThemeData getThemeFromKey(MyThemeKeys themeKey) {
     switch (themeKey) {

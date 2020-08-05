@@ -53,7 +53,7 @@ style: labelStyle(context),),
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: buttonTapped?Theme.of(context).primaryColor:
+                    color: buttonTapped?Theme.of(context).primaryColorDark:
                     Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Theme.of(context).primaryColorDark),
@@ -64,9 +64,10 @@ style: labelStyle(context),),
                       color: buttonTapped?
                       Theme.of(context).primaryColorLight
                           :Theme.of(context).primaryColorDark
-                      ,fontSize: 20,
+                      ,fontSize: 21,
 
-                        fontWeight: FontWeight.w500
+
+                        fontWeight: FontWeight.w600
                     ),
 
                   ),),

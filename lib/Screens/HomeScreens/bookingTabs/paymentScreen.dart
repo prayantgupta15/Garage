@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:garage/Screens/HomeScreens/bookingTabs/bookingFailScreen.dart';
 import 'package:garage/Screens/HomeScreens/bookingTabs/bookingSuccessfullScreen.dart';
+import 'package:garage/Screens/settingScreens/settingHomeScreen.dart';
 import 'package:garage/Utils/commonUtils.dart';
 import 'package:garage/Utils/utils_importer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:masked_text_input_formatter/masked_text_input_formatter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentScreen extends StatefulWidget {
   @override
@@ -38,7 +40,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           return StatefulBuilder(
             builder: (BuildContext context, StateSetter ss) => Container(
               height: getScreenHeight(context) * 0.75,
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.fromLTRB(30,30,30,0),
               child: !isCardAdded
                   ? ListView(
                       children: <Widget>[
@@ -51,7 +53,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             },
                           ),
                         ),
-                        Text("Add New Card", style: headingStyle(context)),
+                        Text("Add New Card", style: TextStyle(
+                          fontSize: 22,
+                          fontFamily: 'Avenir',
+                        )),
                         SizedBox(height: 20),
 
                         //OWNERNAME
@@ -244,7 +249,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: addCardTapped
-                                  ? Theme.of(context).primaryColor
+                                  ? Theme.of(context).primaryColorDark
                                   : Theme.of(context).primaryColorLight,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
@@ -258,8 +263,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   color: addCardTapped
                                       ? Theme.of(context).primaryColorLight
                                       : Theme.of(context).primaryColorDark,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w600
                                 ),
                               ),
                             ),
@@ -273,21 +278,26 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         SizedBox(
                           height: getScreenHeight(context) * 0.1,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              shape: BoxShape.circle),
-                          padding: EdgeInsets.all(20),
-                          child: Icon(
-                            Icons.done_outline,
-                            color: Theme.of(context).primaryColorLight,
-                            size: 40,
-                          ),
-                        ),
+
+//                        Container(
+//                          decoration: BoxDecoration(
+//                              color: Theme.of(context).primaryColor,
+//                              shape: BoxShape.circle),
+//                          padding: EdgeInsets.all(20),
+//                          child: Icon(
+//                            Icons.done_outline,
+//                            color: Theme.of(context).primaryColorLight,
+//                            size: 40,
+//                          ),
+//                        ),
                         SizedBox(height: 20),
                         Text(
                           "New Card Added Successfully!",
-                          style: headingStyle(context),
+                          style: TextStyle(
+                            fontSize: 21,
+                            fontWeight: FontWeight.w600,
+
+                          ),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 20),
@@ -309,7 +319,7 @@ Navigator.push(context, MaterialPageRoute(
                           child: Container(
                             decoration: BoxDecoration(
                               color: payNowTapped
-                                  ? Theme.of(context).primaryColor
+                                  ? Theme.of(context).primaryColorDark
                                   : Theme.of(context).primaryColorLight,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
@@ -323,9 +333,9 @@ Navigator.push(context, MaterialPageRoute(
                                   color: payNowTapped
                                       ? Theme.of(context).primaryColorLight
                                       : Theme.of(context).primaryColorDark,
-                                  fontSize: 20,
+                                  fontSize: 21,
 
-                                    fontWeight: FontWeight.w500
+                                    fontWeight: FontWeight.w600
                                 ),
                               ),
                             ),
@@ -340,185 +350,250 @@ Navigator.push(context, MaterialPageRoute(
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColorLight,
-        body: ListView(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+    return ListView(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: getScreenHeight(context) * 0.05),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('Payment', style: headingStyle(context)),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.add),
+                        GestureDetector(
+                            onTap: () => addCardBottomSheet(),
+                            child: Text("Add New Card"))
+                      ],
+                    ),
+                  ]),
+              SizedBox(height: getScreenHeight(context) * 0.05)
+            ],
+          ),
+        ),
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            height: getScreenHeight(context) * 0.25,
+            initialPage: 1,
+            scrollPhysics: BouncingScrollPhysics(),
+            enableInfiniteScroll: false,
+            reverse: false,
+            autoPlay: false,
+            viewportFraction: 0.7,
+            enlargeCenterPage: true,
+            scrollDirection: Axis.horizontal,
+          ),
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int itemIndex) => Card(
+            color: Theme.of(context).primaryColor,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(13)),
+            child: Container(
+              padding: EdgeInsets.all(25),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: getScreenHeight(context) * 0.05),
+                  SvgPicture.asset('assets/visa.svg',color:Colors.white,),
+
+                  //CARD NUMBER
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text('Payment', style: headingStyle(context)),
-                        Row(
-                          children: <Widget>[
-                            Icon(Icons.add),
-                            GestureDetector(
-                                onTap: () => addCardBottomSheet(),
-                                child: Text("Add New Card"))
-                          ],
-                        ),
-                      ]),
-                  SizedBox(height: getScreenHeight(context) * 0.05)
-                ],
-              ),
-            ),
-            CarouselSlider.builder(
-              options: CarouselOptions(
-                height: getScreenHeight(context) * 0.25,
-                initialPage: 1,
-                scrollPhysics: BouncingScrollPhysics(),
-                enableInfiniteScroll: false,
-                reverse: false,
-                autoPlay: false,
-                viewportFraction: 0.7,
-                enlargeCenterPage: true,
-                scrollDirection: Axis.horizontal,
-              ),
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int itemIndex) => Card(
-                color: Theme.of(context).primaryColor,
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                child: Container(
-                  padding: EdgeInsets.all(25),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Text("VISA",
-                          style: whiteTextStyle(context)
-                      ),
-
-                      //CARD NUMBER
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          for (int j = 0; j < 3; j++)
-                            for (int i = 1; i < 5; i++)
-                              Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.grey,
-                                ),
-                                margin: i == 4
-                                    ? EdgeInsets.only(left: 2, right: 15)
-                                    : EdgeInsets.all(2),
-                                height: 5,
-                                width: 5,
-                              ),
-                          Text(
-                            "3747",
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColorLight,
-                              fontSize: 20,
+                      for (int j = 0; j < 3; j++)
+                        for (int i = 1; i < 5; i++)
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey,
                             ),
-                          )
-                        ],
-                      ),
-
-                      //CARD HOLDER and DATE
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                "Card Holder",
-                                style: TextStyle(
-                                    color: Colors.grey),
-                              ),
-                              Text(
-                                "Expires",
-                                style: TextStyle(
-                                    color: Colors.grey),
-                              ),
-                            ],
+                            margin: i == 4
+                                ? EdgeInsets.only(left: 2, right: 15)
+                                : EdgeInsets.all(2),
+                            height: 5,
+                            width: 5,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                "NAME",
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight),
-                              ),
-                              Text(
-                                "12/23",
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight),
-                              ),
-                            ],
-                          ),
-                        ],
+                      Text(
+                        "3747",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
                       )
                     ],
                   ),
-                ),
-              ),
-            ),
-            SizedBox(height: getScreenHeight(context) * 0.2),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                          buttonTapped=true;
-                  });
-                  Future.delayed(Duration(milliseconds: 100), () async {
-                    setState(() {
-                      buttonTapped=false;
-                    });
-                        Navigator.push(context,
-                            MaterialPageRoute(
-                                builder:(context)=>BookingSuccessfulScreen()
-                            )
-                        );
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: buttonTapped
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).primaryColorLight,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Theme.of(context).primaryColorDark),
-                  ),
-                  padding: EdgeInsets.all(18),
-                  child: Center(
-                    child: Text(
-                      "Pay Now",
-                      style: TextStyle(
-                        color: buttonTapped
-                            ? Theme.of(context).primaryColorLight
-                            : Theme.of(context).primaryColorDark,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
 
+                  //CARD HOLDER and DATE
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            "Card Holder",
+                            style: TextStyle(
+                                color: Colors.grey),
+                          ),
+                          Text(
+                            "Expires",
+                            style: TextStyle(
+                                color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            "NAME",
+                            style: TextStyle(
+                                color: Colors.white),
+                          ),
+                          Text(
+                            "12/23",
+                            style: TextStyle(
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: getScreenHeight(context) * 0.3),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                      buttonTapped=true;
+              });
+              Future.delayed(Duration(milliseconds: 100), () async {
+                setState(() {
+                  buttonTapped=false;
+                });
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder:(context)=>BookingSuccessfulScreen()
+                        )
+                    );
+              });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: buttonTapped
+                    ? Theme.of(context).primaryColorDark
+                    : Theme.of(context).primaryColorLight,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Theme.of(context).primaryColorDark),
+              ),
+              padding: EdgeInsets.all(18),
+              child: Center(
+                child: Text(
+                  "Pay Now",
+                  style: TextStyle(
+                    color: buttonTapped
+                        ? Theme.of(context).primaryColorLight
+                        : Theme.of(context).primaryColorDark,
+                    fontSize: 21,
+                    fontWeight: FontWeight.w600
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+class PaymentWrapper extends StatefulWidget {
+  @override
+  _PaymentWrapperState createState() => _PaymentWrapperState();
+}
+
+class _PaymentWrapperState extends State<PaymentWrapper> {
+  List pages = [
+    PaymentScreen(),
+    SettingHomeScreen()
+  ];
+  int _selectedPage=0;
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Theme.of(context).primaryColorLight,
+        body: pages[_selectedPage],
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColorDark,
           child: Icon(Icons.arrow_back,color: Theme.of(context).primaryColorLight,),
           onPressed: (){
             Navigator.pop(context);
           },
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 5,
+          currentIndex: _selectedPage,
+          onTap: (_index) {
+            setState(() {
+              _selectedPage = _index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              title: Text(
+                'Appointments',
+                style: TextStyle(
+                  color: _selectedPage == 0 ? Theme.of(context).primaryColorDark : Colors.grey,
+                ),
+              ),
+              activeIcon: SvgPicture.asset(
+                'assets/list.svg',
+                color: Theme.of(context).primaryColorDark,
+              ),
+              icon: SvgPicture.asset(
+                'assets/list.svg',
+                color: Colors.grey,
+              ),
+            ),
+            BottomNavigationBarItem(
+                title: Text(
+                  'Profile',
+                  style: TextStyle(
+                    color: _selectedPage == 1 ? Theme.of(context).primaryColorDark : Colors.grey,
+                  ),
+                ),
+                activeIcon: SvgPicture.asset(
+                  'assets/profile.svg',
+                  color: Theme.of(context).primaryColorDark,
+                ),
+                icon: SvgPicture.asset(
+                  'assets/profile.svg',
+                  color: Colors.grey,
+                )
+//
+//
+            ),
+          ],
+
+        ),
       ),
     );
   }

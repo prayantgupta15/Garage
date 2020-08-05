@@ -53,7 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
               child: ListView(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10,10,0,0),
+                    padding: const EdgeInsets.fromLTRB(15,10,0,0),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: IconButton(
@@ -67,7 +67,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 33),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -255,11 +255,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               RichText(
                                 text: TextSpan(
                                     text: "Already have account?",
-                                    style: labelStyle(context),
+                                    style: themeTextStyle(context),
                                     children: [
                                       TextSpan(
                                         text: " Sign In!",
                                         style: fieldTextStyle(context),
+
                                       )
                                     ]
                                 ),

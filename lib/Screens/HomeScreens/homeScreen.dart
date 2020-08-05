@@ -2,11 +2,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:garage/Screens/HomeScreens/bookingTabs/selectModel.dart';
-import 'package:garage/Screens/HomeScreens/profileScreen.dart';
+import 'package:garage/Screens/HomeScreens/bookingTabs/selectService.dart';
+import 'package:garage/Screens/HomeScreens/bookingTabs/yourAppointmentScreen.dart';
 import 'package:garage/Screens/settingScreens/settingHomeScreen.dart';
-import 'file:///G:/FLUTTERAPPS/garage/lib/Screens/HomeScreens/bookingTabs/yourAppointmentScreen.dart';
 import 'package:garage/Utils/utils_importer.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -22,16 +22,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColorLight,
+//        backgroundColor: Theme.of(context).primaryColorLight,
         body: _pageOptions[_selectedPage],
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).primaryColorDark,
           child: Icon(Icons.add,size: 30,color: Theme.of(context).primaryColorLight,),
           tooltip: 'Book Appointment',
           onPressed: (){
             Navigator.push(context, CupertinoPageRoute(
-                builder: (context)=>SelectModelScreen()
+                builder: (context)=>SelectModelWrapper()
             ));
+
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -51,12 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: _selectedPage == 0 ? Theme.of(context).primaryColorDark : Colors.grey,
                 ),
               ),
-              activeIcon: Image.asset(
-                'assets/list.png',
-                color: Theme.of(context).primaryColor,
+              activeIcon: SvgPicture.asset(
+                'assets/list.svg',
+                color: Theme.of(context).primaryColorDark,
               ),
-              icon: Image.asset(
-                'assets/list.png',
+              icon: SvgPicture.asset(
+                'assets/list.svg',
                 color: Colors.grey,
               ),
             ),
@@ -64,21 +65,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text(
                   'Profile',
                   style: TextStyle(
-                    color: _selectedPage == 1 ? Theme.of(context).primaryColorDark : Colors.grey,
+                    color: _selectedPage == 1 ? Theme.of(context).primaryColorDark: Colors.grey,
                   ),
                 ),
-                activeIcon: Image.asset(
-                  'assets/profile.png',
-                  color: Theme.of(context).primaryColor,
+                activeIcon: SvgPicture.asset(
+                  'assets/profile.svg',
+                  color: Theme.of(context).primaryColorDark,
                 ),
-                icon: Image.asset(
-                  'assets/profile.png',
+                icon: SvgPicture.asset(
+                  'assets/profile.svg',
                   color: Colors.grey,
                 )
 //
 //
             ),
           ],
+
         ),
       ),
     );

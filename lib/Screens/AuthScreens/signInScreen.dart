@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:garage/Screens/AuthScreens/signUpScreen.dart';
+import 'package:garage/Screens/HomeScreens/homeScreen.dart';
 import 'package:garage/Utils/commonUtils.dart';
 import 'package:garage/Utils/utils_importer.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -25,9 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
   //METHODS
   void onTap(){
     if(_formKey.currentState.validate()){
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context)=>SignupScreen()
-      ));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+        builder: (context)=>HomeScreen()
+          ),    (Route<dynamic> route) => false
+
+      );
     }
   }
 
@@ -46,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ListView(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 33),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -138,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           SizedBox(height: 20),
 
-                          Text("Forgot password ?",style: labelStyle(context)),
+                          Text("Forgot password ?",style: themeTextStyle(context)),
                           SizedBox(height: 20),
                             raisedButtons(context: context,
                                 text: 'Sign In', onTap: onTap
@@ -153,8 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               child:
                               RichText(
                                 text: TextSpan(
-                                  text: "Dont have account?",
-                                    style: labelStyle(context),
+                                  text: "Don't have account?",
+                                    style: themeTextStyle(context),
                                   children: <TextSpan>[
                                     TextSpan(
                                       text: " Create One!",

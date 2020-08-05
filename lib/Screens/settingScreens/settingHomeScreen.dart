@@ -18,7 +18,6 @@ class _SettingHomeScreenState extends State<SettingHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColorLight,
       body: ListView(
 //        shrinkWrap: true,
         children: <Widget>[
@@ -61,7 +60,7 @@ class _SettingHomeScreenState extends State<SettingHomeScreen> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  Text("Update Settings,",
+                  Text("Update your Account Settings,",
                       style:labelStyle(context)),
                   SizedBox(height: 30),
                   ListView.separated(
@@ -75,7 +74,7 @@ class _SettingHomeScreenState extends State<SettingHomeScreen> {
                         return ListTile(
                           leading: Icon(
                            settingIcons[index],
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).primaryColorDark,
                             size: 30,
                           ),
                           title: Text(
